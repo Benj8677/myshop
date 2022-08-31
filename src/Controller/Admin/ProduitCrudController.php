@@ -26,8 +26,8 @@ class ProduitCrudController extends AbstractCrudController
             TextField::new('titre', 'Titre'),
             TextField::new('collection', 'Collection'),
             // ImageField::new('photo')->setBasePath('img/produits/')->setUploadedFileNamePattern('[ulid].[extension]')->setUploadDir('public\img\produits')->setRequired(false),
-            // TextEditorField::new('description', 'Description')->onlyOnForms(),
-            // TextareaField::new('description', 'Description')->setMaxLength(200)->hideOnForm(),//->renderAsHtml()
+            TextEditorField::new('description', 'Description')->onlyOnForms(),
+            TextareaField::new('description', 'Description')->setMaxLength(200)->hideOnForm(),//->renderAsHtml()
             NumberField::new('prix', 'Prix'),
             NumberField::new('stock', 'Stock'),
             TextField::new('couleur', 'Couleur'),
