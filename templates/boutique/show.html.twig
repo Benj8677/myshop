@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ produit.titre }}, collection {{ produit.collection }}{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">{{ message }}</div>
+{% endfor %}
+
+<section class="row articles mx-auto">
+
+    <article class="col-md-10 mx-auto text-center border border-dark my-3 p-3">
+        <h2>{{ produit.titre }}</h2>
+        <div class="metadata">Collection {{ produit.collection }}</div>
+        <div class="content">
+            <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid" style="max-width:800px;">
+            <p>{{ produit.description|raw }}</p>
+        </div>
+        <div class="metadata">Prix {{ produit.prix }} €</div>
+        <div class="metadata">Couleur {{ produit.couleur }} / Taille {{ produit.taille }}</div>
+        {% if app.user %}
+            {# <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Ajouter au panier</a> #}
+        {% else %}
+            <a href="{{ path('app_register') }}" class="btn btn-outline-success m-3">Créer un compte</a>
+            <a href="#" class="btn btn-outline-success m-3" onclick="getElementById('connect').style.display='';getElementById('body').style='background-color: rgba(0, 0, 0, 0.4);';">Se connecter</a>
+        {% endif %}
+    </article>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des t-shirt{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">{{ message }}</div>
+{% endfor %}
+
+<section class="row articles text-center justify-content-center">
+<h1 class="display-3 my-5 fw-bold">Nos T-shirt</h1>
+<div>
+    <form method="GET" id="formTri">
+    <select name="tri" id="tri" onchange="if (getElementById('tri').value!='') { getElementById('formTri').submit(); }">
+    <option value="">Triez par :</option>
+    <option value="prix-ASC">Prix croissant</option>
+    <option value="prix-DESC">Prix décroissant</option>
+    {# <option value="titre-ASC">Nom du produit</option> #}
+    </select>
+    </form>
+</div>
+{% for produit in tabProduits %}
+
+    <article class="col-3 mx-3 text-center border border-secondary my-3 p-3 rounded shadow" style="z-index:0;">
+        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><h2>{{ produit.titre }}</h2></a>
+        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.collection }} - {{ produit.prix }}</div></a>
+        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.taille }} - {{ produit.couleur }}</div></a>
+        <div class="content" style="min-height:250px;">
+            <a href="{{ path('app_show', {id:produit.id}) }}"><img src="{{ produit.photo }}" alt="" class="img-fluid max-width:100%;"></a>
+            <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><p>{{ produit.description|slice(0,64)|raw }}</p></a>
+            
+        </div><a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-primary">Détail</a>
+                {% if app.user %}
+            {# <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a> #}
+                {% endif %}
+    </article>
+
+{% endfor %}
+</section>
+
+{% endblock %}

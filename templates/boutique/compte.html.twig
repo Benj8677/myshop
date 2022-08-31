@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte : {{ user.pseudo }}{% endblock %}
+
+{% block body %}
+
+<section class="row articles">
+    <article class="col-md-8 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1">
+        <h2>{{ user.pseudo }}</h2>
+        <div class="metadata">Bonjour, {{ user.nom }} {{ user.prenom }}</div>
+        <div class="metadata">{{ user.email }}</div>
+    </article>
+</section>
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success text-center">{{ message }}</div>
+	{% endfor %}
+
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-warning text-center">{{ message }}</div>
+	{% endfor %}
+
+{% endblock %}
