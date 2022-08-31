@@ -32,8 +32,8 @@ class ProduitCrudController extends AbstractCrudController
             NumberField::new('stock', 'Stock'),
             TextField::new('couleur', 'Couleur'),
             TextField::new('taille', 'Taille'),
-            // DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y à H:m')->onlyOnIndex(),
-            // DateTimeField::new('updateAt', 'Date de mise à jour')->onlyOnIndex(),
+            DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y à H:m')->onlyOnIndex(),
+            DateTimeField::new('updateAt', 'Date de mise à jour')->onlyOnIndex(),
         ];
     }
     
