@@ -28,8 +28,8 @@ class ProduitCrudController extends AbstractCrudController
             // ImageField::new('photo')->setBasePath('img/produits/')->setUploadedFileNamePattern('[ulid].[extension]')->setUploadDir('public\img\produits')->setRequired(false),
             // TextEditorField::new('description', 'Description')->onlyOnForms(),
             // TextareaField::new('description', 'Description')->setMaxLength(200)->hideOnForm(),//->renderAsHtml()
-            // NumberField::new('prix', 'Prix'),
-            // NumberField::new('stock', 'Stock'),
+            NumberField::new('prix', 'Prix'),
+            NumberField::new('stock', 'Stock'),
             TextField::new('couleur', 'Couleur'),
             TextField::new('taille', 'Taille'),
             DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y à H:m')->onlyOnIndex(),
