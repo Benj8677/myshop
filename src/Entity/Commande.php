@@ -24,9 +24,6 @@ class Commande
     private Collection $produit;
 
     #[ORM\Column]
-    private ?int $quantite = null;
-
-    #[ORM\Column]
     private ?float $montant = null;
 
     #[ORM\Column]
@@ -34,6 +31,9 @@ class Commande
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateEnregistrement = null;
+
+    #[ORM\Column(nullable: true)]
+    private array $quantite = [];
 
     public function __construct()
     {
@@ -81,18 +81,6 @@ class Commande
         return $this;
     }
 
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
     public function getMontant(): ?float
     {
         return $this->montant;
@@ -128,4 +116,17 @@ class Commande
 
         return $this;
     }
+
+    public function getQuantite(): array
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?array $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
 }
