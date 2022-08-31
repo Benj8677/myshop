@@ -223,7 +223,7 @@ class Produit
 
     public function __toString()
     {
-        return $this->title;
+        return $this->titre;
     }
 
     public function getUpdateAt(): ?\DateTimeInterface
