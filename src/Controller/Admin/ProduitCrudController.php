@@ -6,11 +6,12 @@ use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class ProduitCrudController extends AbstractCrudController
 {
@@ -25,15 +26,20 @@ class ProduitCrudController extends AbstractCrudController
         return [
             TextField::new('titre', 'Titre'),
             TextField::new('collection', 'Collection'),
-            ImageField::new('photo')->setBasePath('img/produits/')->setUploadedFileNamePattern('[ulid].[extension]')->setUploadDir('public/img/produits')->setRequired(false),
-            TextEditorField::new('description', 'Description')->onlyOnForms(),
-            TextareaField::new('description', 'Description')->setMaxLength(200)->hideOnForm(),//->renderAsHtml()
+            ChoiceField ::new('taille', 'Taille')->setChoices([
+                'xs' => 'xs',
+                's' => 's',
+                'm' => 'm',
+                'l' => 'l',
+                'xl' => 'xl',
+                'xxl' => 'xxl',
+        ]),            ImageField::new('photo')->setBasePath('img/produits/')->setUploadedFileNamePattern('[ulid].[extension]')->setUploadDir('public/img/produits')->setRequired(false),
+            TextEditorField::new('description', 'Description'),
             NumberField::new('prix', 'Prix'),
             NumberField::new('stock', 'Stock'),
             TextField::new('couleur', 'Couleur'),
-            TextField::new('taille', 'Taille'),
-            DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y à H:m')->onlyOnIndex(),
-            DateTimeField::new('updateAt', 'Date de mise à jour')->onlyOnIndex(),
+            DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y')->onlyOnIndex(),
+            DateTimeField::new('updateAt', 'Date de mise à jour')->setFormat('d/M/y')->onlyOnIndex(),
         ];
     }
     
