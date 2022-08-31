@@ -30,7 +30,7 @@ class UserCrudController extends AbstractCrudController
                 'Mme' => 'Mme',
                 'Mx' => 'Mx',
         ]),
-            CollectionField::new('roles')->setTemplatePath('admin/field/roles.html.twig'),
+            //CollectionField::new('roles')->setTemplatePath('admin/field/roles.html.twig'),
         ];
     }
     
