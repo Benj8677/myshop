@@ -32,7 +32,7 @@
             
         </div><a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-primary">Détail</a>
                 {% if app.user %}
-            {# <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a> #}
+            <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a>
                 {% endif %}
     </article>
 

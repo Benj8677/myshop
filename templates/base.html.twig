@@ -32,12 +32,19 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path('app_liste') }}">Nos T-shirt</a>
         </li>
-        {# <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li> #}
       </ul>
       <div class="d-flex">
         <ul class="navbar-nav">
+        <li class="nav-item d-inline-flex">
+        {% set nbProduit = app.session.get('totalQuantity') %}
+        {% set totalPrice = app.session.get('totalPrice') %}
+        {% if nbProduit>=1 %}
+        <a class="nav-link position-relative" href="{{ path('app_cart') }}">Panier</a>
+            <h6><span class="badge rounded-pill bg-danger">{{ nbProduit }}</span></h6>
+            <a class="nav-link position-relative" href="{{ path('app_cart') }}"><i class="fas fa-coins"></i></a>
+            <h6><span class="badge rounded-pill bg-success">{{ totalPrice }}€</span></h6>
+        {% endif %}
+        </li>
       {% if app.user %}
           {% if is_granted("ROLE_ADMIN") %}
             <li class="nav-item">
