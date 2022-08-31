@@ -14,7 +14,7 @@
         <h2>{{ produit.titre }}</h2>
         <div class="metadata">Collection {{ produit.collection }}</div>
         <div class="content">
-            <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid" style="max-width:800px;">
+            <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid" style="max-width:400px;float:left;">
             <p>{{ produit.description|raw }}</p>
         </div>
         <div class="metadata">Prix {{ produit.prix }} €</div>
