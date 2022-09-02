@@ -64,4 +64,9 @@ class ProduitCrudController extends AbstractCrudController
         $entityManager->persist($entityInstance);
         $entityManager->flush();
     }
+
+    // public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    // {
+        
+    // }
 }

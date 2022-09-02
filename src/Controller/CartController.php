@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\Produit;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,6 +79,9 @@ class CartController extends AbstractController
             {
                 $commande->addProduit($cart['product']);
                 $qte[$cart['product']->getId()] = $cart['quantity'];
+
+                $cart['product']->setStock($cart['product']->getStock()-$cart['quantity']);
+                $manager->persist($cart['product']);
             }
             //$qte = array_reverse($qte);
 
