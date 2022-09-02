@@ -26,11 +26,17 @@ class CommandeCrudController extends AbstractCrudController
             AssociationField::new('user', 'Utilisateur'),
             AssociationField::new('produit', 'Produit')->setTemplatePath('admin/field/produits.html.twig')->onlyOnIndex(),
             ChoiceField ::new('etat')->setChoices([
+                '<span class="text-warning">En traitement</span>' => 0,
+                '<span class="text-danger">Payement confirmé</span>' => 1,
+                '<span class="text-info">Livraison en cours</span>' => 2,
+                '<span class="text-success">Commande livrée</span>' => 3,
+            ])->onlyOnIndex(),
+            ChoiceField ::new('etat')->setChoices([
                 'En traitement' => 0,
                 'Payement confirmé' => 1,
                 'Livraison en cours' => 2,
                 'Commande livrée' => 3,
-            ]),
+            ])->onlyOnForms(),
             NumberField::new('montant')->onlyOnIndex(),
             DateTimeField::new('dateEnregistrement', 'Date de commande')->setFormat('d/M/y à H:m')->onlyOnIndex(),
         ];
