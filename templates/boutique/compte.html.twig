@@ -6,7 +6,7 @@
 
 <section class="row articles">
     <article class="col-md-8 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1">
-        <h2>{{ user.pseudo }}</h2>
+        <h2 class="fw-bold">{{ user.pseudo }}</h2>
         <div class="metadata">Bonjour, {{ user.nom }} {{ user.prenom }}</div>
         <div class="metadata">{{ user.email }}</div>
     </article>
@@ -19,5 +19,38 @@
 	{% for message in app.flashes('error') %}
 		<div class="alert alert-warning text-center">{{ message }}</div>
 	{% endfor %}
+
+
+<section id="commentaires" class="col-8 mx-auto">
+    <h2 class="text-center text-info m-3">Vos Commandes</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Fait le</th>
+                <th>Produit</th>
+                <th>Total</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+	{% set etat = [
+                '<span class="text-info">En traitement</span>',
+                '<span class="text-info">Payement confirmé</span>',
+                '<span class="text-warning">Livraison en cours</span>',
+                '<span class="text-success">Commande livrée</span>',
+            ] %}
+    {% set commandes = user.commandes|sort|reverse %}
+    {% for commande in commandes %}
+            <tr class="align-middle">
+                <td scope="row" class='align-top'>{{ commande.dateEnregistrement|date("d/m/Y à H:i") }}</td>
+				<td>{% for produit in commande.produit %}
+				<img src="{{ asset('img/produits/' ~ produit.photo) }}" style="width: 70px;">{{ produit.titre }} / Qté : {{ commande.quantite[produit.id] }}<hr class="m-0 p-0 text-white">
+				{% endfor %}</td>
+                <td class='align-top'>{{ commande.montant }} €</td>
+                <td class='align-top'>{{ etat[commande.etat]|raw }}</td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<div class="text-center bg-image shadow mt-4" style="background-image: url('/img/banniere.jpg');height: 10vh;min-height: 250px;border-radius: 30% 20% / 10% 40%;">
-  <div class="display-5 fw-bold text-white mask p-5" style="background-color: rgba(0, 0, 0, 0.6);height: 10vh;min-height: 250px;border-radius: 30% 20% / 10% 40%;">
+<div class="text-center bg-image shadow mt-4" style="background-image: url('/img/banniere.jpg');height: 10vh;min-height: 250px;border-radius: 30% 20% / 10% 35%;">
+  <div class="display-5 fw-bold text-white mask p-5" style="background-color: rgba(0, 0, 0, 0.6);height: 10vh;min-height: 250px;border-radius: 30% 20% / 10% 35%;">
     <h1 class="display-4 my-1 fw-bold">Bienvenue chez MyShop!</h1>
 
     Les meilleurs T-shirt du marché !</div>
@@ -20,10 +20,10 @@
 {% for produit in tabProduits %}
 
     <div class="card col-3 mx-auto text-center my-3 p-3 border-white">
-        <h2>{{ produit.titre }}</h2>
+        <h2 class="text-warning">{{ produit.titre }}</h2>
         <div class="content">
             <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid max-width:100%;">
-            <a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-primary stretched-link">Détail du T-shirt</a>
+            <a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-info stretched-link my-3">Détail du T-shirt</a>
         </div>
     </div>
 

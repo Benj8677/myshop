@@ -1,0 +1,17 @@
+{% block _Commande_quantite %}
+
+
+{% dump %}
+
+{% for qte in field.value %}
+    {{ qte }}<hr>
+
+    {# {% if role == 'ROLE_ADMIN' %}
+        Admin
+    {% else %}
+        Membre
+    {% endif %} #}
+
+{% endfor %}
+
+{% endblock %}

@@ -13,7 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CommandeCrudController extends AbstractCrudController
-{
+{   
     public static function getEntityFqcn(): string
     {
         return Commande::class;
@@ -21,7 +21,7 @@ class CommandeCrudController extends AbstractCrudController
 
     
     public function configureFields(string $pageName): iterable
-    {
+    {       
         return [
             AssociationField::new('user', 'Utilisateur'),
             AssociationField::new('produit', 'Produit')->setTemplatePath('admin/field/produits.html.twig')->onlyOnIndex(),
@@ -31,7 +31,6 @@ class CommandeCrudController extends AbstractCrudController
                 'Livraison en cours' => 2,
                 'Commande livrée' => 3,
             ]),
-            ArrayField::new('quantite')->onlyOnIndex(),
             NumberField::new('montant')->onlyOnIndex(),
             DateTimeField::new('dateEnregistrement', 'Date de commande')->setFormat('d/M/y à H:m')->onlyOnIndex(),
         ];

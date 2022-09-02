@@ -79,7 +79,7 @@ class CartController extends AbstractController
                 $commande->addProduit($cart['product']);
                 $qte[$cart['product']->getId()] = $cart['quantity'];
             }
-            $qte = array_reverse($qte);
+            //$qte = array_reverse($qte);
 
             $commande->setDateEnregistrement(new \DateTime());
             $commande->setUser($this->getUser());

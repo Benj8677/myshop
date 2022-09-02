@@ -23,14 +23,14 @@
 {% for produit in tabProduits %}
 
     <article class="col-3 mx-3 text-center border border-secondary my-3 p-3 rounded shadow" style="z-index:0;">
-        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><h2>{{ produit.titre }}</h2></a>
+        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-warning"><h2>{{ produit.titre }}</h2></a>
         <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.collection }} - {{ produit.prix }}€</div></a>
         <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.taille }} - {{ produit.couleur }}</div></a>
         <div class="content" style="min-height:250px;">
             <a href="{{ path('app_show', {id:produit.id}) }}"><img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid max-width:100%;"></a>
             <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><p>{{ produit.description|slice(0,64)|raw }}</p></a>
             
-        </div><a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-primary">Détail</a>
+        </div><a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-info">Détail</a>
         {% if app.user %}
             <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a>
         {% else %}
