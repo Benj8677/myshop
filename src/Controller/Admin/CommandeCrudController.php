@@ -35,7 +35,7 @@ class CommandeCrudController extends AbstractCrudController
                 'Payement confirmé' => 1,
                 'Livraison en cours' => 2,
                 'Commande livrée' => 3,
-            ])->onlyOnForms(),
+            ])->renderExpanded()->onlyOnForms(),
             MoneyField::new('montant', 'Montant')->setCurrency('EUR')->setStoredAsCents(false)->onlyOnIndex(),
             DateTimeField::new('dateEnregistrement', 'Date de commande')->setFormat('d/M/y à H:m')->onlyOnIndex(),
         ];

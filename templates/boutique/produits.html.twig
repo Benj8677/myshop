@@ -23,7 +23,7 @@
 {% for produit in tabProduits %}
 
     <article class="col-3 mx-3 text-center border border-secondary my-3 p-3 rounded shadow" style="z-index:0;">
-        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-warning"><h2>{{ produit.titre }}</h2></a>
+        <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-warning"><h2 class="fw-bold">{{ produit.titre }}</h2></a>
         <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.collection }} - {{ produit.prix }}€</div></a>
         <a href="{{ path('app_show', {id:produit.id}) }}" class="text-decoration-none text-dark"><div class="metadata">{{ produit.taille }} - {{ produit.couleur }}</div></a>
         <div class="content" style="min-height:250px;">
@@ -35,7 +35,7 @@
             {% if produit.stock>0 %}
             <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a>
             {% else %}
-                <span class="text-danger">Produit indisponible</span>
+                <span class="btn text-danger">Indisponible</span>
             {% endif %}
             
         {% else %}
