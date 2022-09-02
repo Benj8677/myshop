@@ -6,10 +6,10 @@ use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -35,7 +35,7 @@ class ProduitCrudController extends AbstractCrudController
                 'xxl' => 'xxl',
         ]),            ImageField::new('photo')->setBasePath('img/produits/')->setUploadedFileNamePattern('[ulid].[extension]')->setUploadDir('public/img/produits')->setRequired(false),
             TextEditorField::new('description', 'Description'),
-            NumberField::new('prix', 'Prix'),
+            MoneyField::new('prix', 'Prix')->setCurrency('EUR')->setStoredAsCents(false),
             NumberField::new('stock', 'Stock'),
             TextField::new('couleur', 'Couleur'),
             DateTimeField::new('dateEnregistrement', 'Date d\'ajout')->setFormat('d/M/y')->onlyOnIndex(),
