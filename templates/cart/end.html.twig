@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Votre panier{% endblock %}
+{% block title %}Résumé de votre commande{% endblock %}
 
 {% block body %}
 
-<h1 class="text-center">Votre panier</h1>
+<h1 class="text-center">Détail commande</h1>
 
 {% if items %}
     <table class="table">
@@ -14,7 +14,6 @@
                 <th>Prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -24,15 +23,10 @@
                 <td>{{ item.product.titre }}</td>
                 <td>{{ item.product.prix|number_format(2) }}</td>
                 <td>{{ item.quantity }}
-                <a href="{{ path('cart_add', {id: item.product.id}) }}" class="btn-sm btn-success"><i class="fas fa-plus"></i></a>
-                <a href="{{ path('cart_min', {id: item.product.id}) }}" class="btn-sm btn-warning"><i class="fas fa-minus"></i></a>
                 </td>
                 <td>
                 {% set total = item.quantity*item.product.prix %}
                 {{ total|number_format(2) }} €
-                </td>
-                <td>
-                <a href="{{ path('cart_remove', {id: item.product.id}) }}" class="btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
             {% set prixTotal = prixTotal+total %}
@@ -42,21 +36,13 @@
             <tr>
                 <td colspan="3" class="fw-bold text-end">Total commande :</td>
                 <td class="fw-bold" style='background-color: rgba(0, 0, 0, 0.4);'>{{ app.session.get('totalPrice')|number_format(2) }} €</td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
-    <a href="{{ path('cart_destroy') }}" class="btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
-    <a href="{{ path('cart_destroy') }}" class="text-danger text-decoration-none">Vider le panier</i></a>
-
-                {% if app.user %}
-                <a href="{{ path('cart_valid') }}" class="btn btn-outline-success m-3">Terminer la commande</a>
-                {% endif %}
-    
 {% else %}
 
-    <p class="display-6 text-warning">Votre panier est vide</p>
-    
+    <p class="display-6 text-warning">Votre commande a bien été enregistré. Vous pouvez suivre votre commande dans votre compte.</p>
+    <a href="{{ path('app_compte') }}" class="btn btn-outline-success m-3">Voir mon compte</a>
 {% endif %}
 
 {% endblock %}

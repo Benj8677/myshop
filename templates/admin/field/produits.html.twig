@@ -1,0 +1,14 @@
+{% block _Commande_produits %}
+
+{% for produit in field.value %}
+    {{ produit.titre }}
+
+    {# {% if role == 'ROLE_ADMIN' %}
+        Admin
+    {% else %}
+        Membre
+    {% endif %} #}
+
+{% endfor %}
+
+{% endblock %}

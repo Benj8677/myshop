@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Service\CartService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
@@ -17,6 +20,18 @@ class CartController extends AbstractController
         $cs->setTotalCart();
 
         return $this->render('cart/index.html.twig', [
+            'items' => $cartWithData,
+        ]);
+    }
+
+    #[Route('/cartend', name: 'app_cart_end')]
+    public function end(CartService $cs): Response
+    {
+        $cartWithData = $cs->getCartWithData();
+        $cs->setNbProduct();
+        $cs->setTotalCart();
+
+        return $this->render('cart/end.html.twig', [
             'items' => $cartWithData,
         ]);
     }
@@ -47,5 +62,36 @@ class CartController extends AbstractController
     {
         $cs->removeAll();
         return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/valid', name:'cart_valid')]
+    public function validation(RequestStack $rs, CartService $cs, EntityManagerInterface $manager)
+    {
+        if ($this->getUser())
+        {
+            $session = $rs->getSession();
+            $cartWithData = $cs->getCartWithData();
+            $commande = new Commande;
+            $qte = [];
+
+            foreach ($cartWithData as $cart)
+            {
+                $commande->addProduit($cart['product']);
+                $qte[$cart['product']->getId()] = $cart['quantity'];
+            }
+
+            $commande->setDateEnregistrement(new \DateTime());
+            $commande->setUser($this->getUser());
+            $commande->setQuantite($qte);
+            $commande->setMontant($session->get('totalPrice'));
+            $commande->setEtat(0);
+
+            $manager->persist($commande);
+            $manager->flush();
+
+            $cs->removeAll();
+
+            return $this->redirectToRoute('app_cart_end');
+        }
     }
 }

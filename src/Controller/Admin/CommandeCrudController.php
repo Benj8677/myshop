@@ -21,15 +21,14 @@ class CommandeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('user', 'utilisateur'),
-            AssociationField::new('produit', 'produit'),
+            AssociationField::new('user', 'Utilisateur'),
+            AssociationField::new('produit', 'Produit')->setTemplatePath('admin/field/produits.html.twig')->onlyOnIndex(),
             ChoiceField ::new('etat')->setChoices([
                 'En traitement' => 0,
                 'Payement confirmé' => 1,
                 'Livraison en cours' => 2,
                 'Commande livrée' => 3,
-        ]),
-            ArrayField::new('quantite'),
+            ]),
             NumberField::new('montant')->onlyOnIndex(),
             DateTimeField::new('dateEnregistrement', 'Date de commande')->setFormat('d/M/y à H:m')->onlyOnIndex(),
         ];

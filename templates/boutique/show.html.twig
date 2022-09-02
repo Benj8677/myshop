@@ -11,14 +11,14 @@
 <section class="row articles mx-auto">
 
     <article class="col-md-10 mx-auto text-center border border-dark my-3 p-3">
-        <h2>{{ produit.titre }}</h2>
-        <div class="metadata">Collection {{ produit.collection }}</div>
         <div class="content">
             <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid" style="max-width:400px;float:left;">
-            <p>{{ produit.description|raw }}</p>
+            <h2 class='text-warning'>{{ produit.titre }}</h2>
+            <div class="metadata text-info">Collection : {{ produit.collection }}</div>
+            <p class="text-secondary">{{ produit.description|raw }}</p>
         </div>
-        <div class="metadata">Prix {{ produit.prix }} €</div>
-        <div class="metadata">Couleur {{ produit.couleur }} / Taille {{ produit.taille }}</div>
+        <div class="metadata text-info">Prix : {{ produit.prix }} €</div>
+        <div class="metadata text-info">Couleur : {{ produit.couleur }} / Taille : {{ produit.taille }}</div>
         {% if app.user %}
             <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Ajouter au panier</a>
         {% else %}
