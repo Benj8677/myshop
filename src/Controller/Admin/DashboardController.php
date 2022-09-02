@@ -30,7 +30,7 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linkToDashboard('Accueil', 'fa fa-home'),
-            MenuItem::linkToRoute('Accueil', 'fa fa-home', 'app_myshop'),
+            MenuItem::linkToRoute('retour au site', 'fa fa-home', 'app_boutique'),
             MenuItem::section('boutique'),
             MenuItem::linkToCrud('Produit', 'fas fa-socks', Produit::class),
             MenuItem::linkToCrud('Commande', 'fas fa-coins', Commande::class),

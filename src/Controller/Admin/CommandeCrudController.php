@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Commande;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -29,9 +31,16 @@ class CommandeCrudController extends AbstractCrudController
                 'Livraison en cours' => 2,
                 'Commande livrée' => 3,
             ]),
+            ArrayField::new('quantite')->onlyOnIndex(),
             NumberField::new('montant')->onlyOnIndex(),
             DateTimeField::new('dateEnregistrement', 'Date de commande')->setFormat('d/M/y à H:m')->onlyOnIndex(),
         ];
     }
     
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable(Action::NEW, Action::DELETE)
+        ;
+    }
 }
