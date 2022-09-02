@@ -4,7 +4,7 @@
 
 {% for produit in field.value %}
 <img src="{{ asset('img/produits/' ~ produit.photo) }}" alt="" class="img-fluid" style="max-width:30px;float:left;">
-    {{ produit.titre }} / qté : {{ field.value.owner.quantite[produit.id] }}<hr>
+    {{ produit.titre }} / qté : {{ field.value.owner.quantite[produit.id] }}<hr class="m-0 p-0 text-white">
 
     {# {% if role == 'ROLE_ADMIN' %}
         Admin
