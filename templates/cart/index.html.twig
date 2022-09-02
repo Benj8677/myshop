@@ -22,7 +22,7 @@
         {% for item in items %}             
             <tr>
                 <td><img src="{{ asset('img/produits/' ~ item.product.photo) }}" alt="" class="img-fluid" style="max-width:50px;float:left;">{{ item.product.titre }}</td>
-                <td>{{ item.product.prix|number_format(2) }}</td>
+                <td>{{ item.product.prix|number_format(2) }}€</td>
                 <td>{{ item.quantity }}
                 <a href="{{ path('cart_add', {id: item.product.id}) }}" class="btn-sm btn-success"><i class="fas fa-plus"></i></a>
                 <a href="{{ path('cart_min', {id: item.product.id}) }}" class="btn-sm btn-warning"><i class="fas fa-minus"></i></a>

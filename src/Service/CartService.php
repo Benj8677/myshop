@@ -22,11 +22,12 @@ class CartService
 
         $cart = $session->get('cart', []);
 
-        if (!empty($cart[$id]))
+        $prod = $this->repo->find($id);
+        if (!empty($cart[$id]) && $prod->getStock()>$cart[$id])
         {
             $cart[$id]++;
         }
-        else
+        elseif ($prod->getStock()>0)
         {
             $cart[$id] = 1;
         }

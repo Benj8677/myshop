@@ -32,7 +32,12 @@
             
         </div><a href="{{ path('app_show', {id:produit.id}) }}" class="btn btn-outline-info">Détail</a>
         {% if app.user %}
+            {% if produit.stock>0 %}
             <a href="{{ path('cart_add', {id:produit.id}) }}" class="btn btn-outline-success m-3">Commander</a>
+            {% else %}
+                <span class="text-danger">Produit indisponible</span>
+            {% endif %}
+            
         {% else %}
             <a href="#" class="btn btn-outline-success m-3" onclick="getElementById('connect').style.display='';getElementById('body').style='background-color: rgba(0, 0, 0, 0.4);';">Se connecter</a>
         {% endif %}
